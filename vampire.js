@@ -49,7 +49,7 @@ class Vampire {
   closestCommonAncestor(vampire) {
     let currentVampire = this; //this is first vampire being compared
     let secondVampire = vampire;
-    
+
     if (currentVampire.creator === null) { //root
       return currentVampire;
     }
@@ -75,41 +75,38 @@ class Vampire {
     return currentVampire;
   }
 
-// Returns the vampire object with that name, or null if no vampire exists with that name
-vampireWithName(name) {
-if (this.name === name){
-  return this;
+  // Returns the vampire object with that name, or null if no vampire exists with that name
+  vampireWithName(name) {
+    if (this.name === name) {
+      return this;
+    }
+    for (const childNode of this.offspring) {
+      const loop = childNode.vampireWithName(name);
+      // console.log(loop)
+      if (loop !== null){
+        return loop;
+      }
+    }
+      return null;
+  }
+
+
+  // Returns the total number of vampires that exist
+  get totalDescendents() {
+
+  }
+
+  // Returns an array of all the vampires that were converted after 1980
+  get allMillennialVampires() {
+
+  }
+
+
 }
-return null;
-}
-
-// Returns the total number of vampires that exist
-get totalDescendents() {
-
-}
-
-// Returns an array of all the vampires that were converted after 1980
-get allMillennialVampires() {
-
-}
 
 
-}
-
-rootVampire = new Vampire("root")
-
-offspring1 = new Vampire("andrew");
-     offspring2 = new Vampire("sarah");
-     offspring3 = new Vampire("c");
-     offspring4 = new Vampire("d");
-     offspring5 = new Vampire("e");
-     rootVampire.addOffspring(offspring1);
-     offspring1.addOffspring(offspring2);
-     rootVampire.addOffspring(offspring3);
-     offspring3.addOffspring(offspring4);
-     offspring4.addOffspring(offspring5);
 
 
-console.log(rootVampire.vampireWithName("andrew"))
+
 module.exports = Vampire;
 
