@@ -83,34 +83,40 @@ class Vampire {
     for (const childNode of this.offspring) {
       const loop = childNode.vampireWithName(name);
       // console.log(loop)
-      if (loop !== null){
+      if (loop !== null) {
         return loop;
       }
     }
-      return null;
+    return null;
   }
 
 
   // Returns the total number of vampires that exist
   get totalDescendents() {
     let totalDescendents = 0;
-    for (const offspring of this.offspring){
-      totalDescendents ++ 
+    for (const offspring of this.offspring) {
+      totalDescendents ++;
       totalDescendents += offspring.totalDescendents;
 
     }
-    return totalDescendents
+    return totalDescendents;
   }
 
   // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
+    let result = [];
 
+    if (this.yearConverted >= 1980) {
+      result.push(this);
+    }
+    for (const offspring of this.offspring) {
+      const offspringYearConverted = offspring.allMillennialVampires;
+      result = result.concat(offspringYearConverted);
+    }
+    return result;
   }
 
-
 }
-
-
 
 
 
