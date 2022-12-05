@@ -41,7 +41,7 @@ class Vampire {
 
   /** Stretch **/
 
-  // Returns the closest common ancestor of two vampires.
+  // Returns the closest common ancestor of two vampires.  use breadth method
   // The closest common anscestor should be the more senior vampire if a direct ancestor is used.
   // For example:
   // * when comparing Ansel and Sarah, Ansel is the closest common anscestor.
@@ -57,21 +57,21 @@ class Vampire {
       return secondVampire;
     }
 
-    if (currentVampire === secondVampire) { //same vampire
-      return vampire;
-    }
-    if (currentVampire.name === secondVampire.creator.name) {
-      return currentVampire;
-    }
-    if (secondVampire.name === currentVampire.creator.name) {
-      return secondVampire;
-    }
-    while (currentVampire.creator) {
-      currentVampire = currentVampire.creator;
-    }
-    while (secondVampire.creator) {
-      secondVampire = secondVampire.creator;
-    }
+    // if (currentVampire === secondVampire) { //same vampire
+    //   return vampire;
+    // }
+    // if (currentVampire.name === secondVampire.creator.name) {
+    //   return currentVampire;
+    // }
+    // if (secondVampire.name === currentVampire.creator.name) {
+    //   return secondVampire;
+    // }
+    // while (currentVampire.creator) {
+    //   currentVampire = currentVampire.creator;
+    // }
+    // while (secondVampire.creator) {
+    //   secondVampire = secondVampire.creator;
+    // }
     return currentVampire;
   }
 
